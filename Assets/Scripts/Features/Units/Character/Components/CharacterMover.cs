@@ -27,7 +27,7 @@ namespace Features.Units.Character
       _characterConfig = characterConfig;
     }
     
-    private void Update()
+    public void MoveAndRotate()
     {
       if (_joystickService.GetAxis() != Vector2.zero)
       {

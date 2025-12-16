@@ -1,4 +1,5 @@
 using Features.Farm;
+using Features.Farming;
 using Infrastructure.Camera;
 using Input;
 using Services;
@@ -11,16 +12,14 @@ namespace Infrastructure.CompositionRoot
     [SerializeField] private CameraService _camera;
     [SerializeField] private Configs _configs;
     [SerializeField] private Transform _characterSpawnPosition;
-    [SerializeField] private Farm _farm;
+    [SerializeField] private Grass grass;
 
     private void Start()
     {
-      IGameFactory gameFactory = new GameFactory(_configs, _joystick, _camera);
-      _farm.Construct(gameFactory, _configs.FarmConfig);
+      var gameFactory = new GameFactory(_configs, _joystick, _camera, grass);
       
       InitServices();
 
-      _farm.CreateFarmField();
       gameFactory.CreateCharacter(_characterSpawnPosition.position);
     }
     

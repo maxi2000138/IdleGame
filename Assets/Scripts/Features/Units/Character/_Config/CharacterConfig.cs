@@ -7,5 +7,6 @@ namespace Features.Units.Character._Config
   {
     public Character Prefab;
     public float Speed;
+    public float DetectionDistance;
   }
 }

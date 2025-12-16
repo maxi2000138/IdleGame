@@ -1,7 +1,6 @@
-using System;
-using Features.Farm.Plant;
+using Features.Farm;
+using Features.Farming;
 using Features.Units.Character;
-using Features.Units.Character.Scythe;
 using Features.Units.Customer;
 using Infrastructure.Camera;
 using Infrastructure.CompositionRoot;
@@ -17,12 +16,14 @@ namespace Services
     private readonly Configs _configs;
     private readonly IJoystickService _joystick;
     private readonly ICameraService _camera;
+    private Grass _grass;
     
-    public GameFactory(Configs configs, IJoystickService joystick, ICameraService camera)
+    public GameFactory(Configs configs, IJoystickService joystick, ICameraService camera, Grass grass)
     {
       _configs = configs;
       _joystick = joystick;
       _camera = camera;
+      _grass = grass;
     }
 
     public Character CreateCharacter(Vector3 position)
@@ -31,33 +32,13 @@ namespace Services
       Character character = Object.Instantiate(prefab, position, Quaternion.identity);
       
       character.Mover.Construct(character, _joystick, _camera, _configs.CharacterConfig);
+      character.Harvester.Construct(_configs.harvesterConfig);
+      character.Detector.Construct(character, _configs.CharacterConfig);
       
       character.Mover.ResetSpeed();
       _camera.SetTarget(character.transform);
 
       return character;
-    }
-    
-    public Plant CreatePlant(Vector3 position, Vector3 scale, Transform parent)
-    {
-      var prefab = _configs.FarmConfig.PlantPrefab;
-      var plant = Object.Instantiate(prefab, position, Quaternion.identity, parent);
-      plant.transform.localScale = scale;
-
-      return plant;
-    }
-
-    public Scythe CreateScythe()
-    {
-      throw new NotImplementedException();
-    }
-
-    public PlantLoot CreateLoot(Vector3 position, Quaternion rotation, Transform parent)
-    {
-      var prefab = _configs.FarmConfig.LootPrefab;
-      var lootComponent = Object.Instantiate(prefab, position, rotation, parent);
-
-      return lootComponent;
     }
 
     public Customer CreateCustomer(Vector3 position, Transform parent)
