@@ -1,6 +1,5 @@
 using System;
 using Features.Farm.Plant;
-using Features.Farm.Soil;
 using Features.Units.Character;
 using Features.Units.Character.Scythe;
 using Features.Units.Customer;
@@ -38,16 +37,7 @@ namespace Services
 
       return character;
     }
-
-    public Soil CreateSoil(Vector3 position, Vector3 scale, Transform parent)
-    {
-      var prefab = _configs.FarmConfig.SoilPrefab;
-      var soil = Object.Instantiate(prefab, position, Quaternion.identity, parent);
-      soil.transform.localScale = scale;
-
-      return soil;
-    }
-
+    
     public Plant CreatePlant(Vector3 position, Vector3 scale, Transform parent)
     {
       var prefab = _configs.FarmConfig.PlantPrefab;
