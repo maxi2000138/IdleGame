@@ -73,6 +73,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3068553635230146609}
+  - component: {fileID: 513741192932368854}
+  - component: {fileID: 3677162705607241631}
+  - component: {fileID: 3006241648856680040}
+  - component: {fileID: 5849162115270754902}
   - component: {fileID: 9011409693283469736}
   - component: {fileID: 7293257892672018097}
   m_Layer: 0
@@ -98,6 +102,59 @@ Transform:
   - {fileID: 1266689973760179752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513741192932368854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2529df5844324fbaa8f7faf52e39bf04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CharacterController>k__BackingField: {fileID: 3677162705607241631}
+  <Mover>k__BackingField: {fileID: 3006241648856680040}
+  <CharacterAnimator>k__BackingField: {fileID: 5849162115270754902}
+--- !u!114 &3677162705607241631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16c538edfe7427a9587fc4b0077241a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterController: {fileID: 9011409693283469736}
+--- !u!114 &3006241648856680040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a6d5178ee24033a4a048d8436acd65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5849162115270754902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f233f475b484bdc8c57ec6bcf816023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7293257892672018097}
 --- !u!143 &9011409693283469736
 CharacterController:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 861368665902951050}
   - component: {fileID: 861368665902951049}
   - component: {fileID: 861368665902951048}
-  - component: {fileID: 861368665902951159}
+  - component: {fileID: 2446875757989957356}
   m_Layer: 5
   m_Name: JoystickService
   m_TagString: Untagged
@@ -49,7 +49,7 @@ Canvas:
   m_GameObject: {fileID: 861368665902951158}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -102,8 +102,8 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 55
---- !u!114 &861368665902951159
+    m_Bits: 4294967295
+--- !u!114 &2446875757989957356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   _movementAreaRadius: 50
   _deadZoneRadius: 0.1
   _fadeTime: 4
-  _isStatick: 0
+  _isStatic: 0
 --- !u!1 &5564804832796350572
 GameObject:
   m_ObjectHideFlags: 0
