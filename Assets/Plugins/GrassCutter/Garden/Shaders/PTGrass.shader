@@ -22,6 +22,7 @@ Shader "PT/PTGrass"
         _TessellationUniform("Tessellation Uniform", Range(1, 64)) = 1
         _WindSource("Wind Source", Vector) = (0, 0, 0, 0)
         _WindRange("WindRange", Float) = 2.0
+        _GrowthMultiplier("Growth Multiplier", Range(0, 1)) = 1
     }
     SubShader
     {
@@ -129,6 +130,7 @@ Shader "PT/PTGrass"
 
             float4 _WindSource;
             float _WindRange;
+            float _GrowthMultiplier;
 
             vertexOutput makevertex(float3 pos, float2 cuv, float2 uv){
                 vertexOutput o;
@@ -191,7 +193,7 @@ Shader "PT/PTGrass"
                     transformationMatrix = mul(transformationMatrix, facingRotationMatrix);
                     transformationMatrix = mul(transformationMatrix, bendRotationMatrix);
 
-                    float height = (rand(pos.zyx) * 2 - 1) * _BladeHeightRandom + _BladeHeight;
+                    float height = ((rand(pos.zyx) * 2 - 1) * _BladeHeightRandom + _BladeHeight) * _GrowthMultiplier;
                     float width = (rand(pos.xzy) * 2 - 1) * _BladeWidthRandom + _BladeWidth;
                     
                     triStream.Append(

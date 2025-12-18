@@ -7,11 +7,11 @@ namespace Features.Upgraders
   public class HarvestRadiusUpgrader : UpgraderBase
   {
     private int _currentLevel = 1;
-    private UpgradersConfig _upgradersConfig;
+    private UpgradersConfig _upgraderConfig;
     
     public void Construct(UpgradersConfig upgradersConfig)
     {
-      _upgradersConfig = upgradersConfig;
+      _upgraderConfig = upgradersConfig;
       base.Construct(upgradersConfig.UpgradeDelayMS);
       
       UpdateUI();
@@ -19,16 +19,26 @@ namespace Features.Upgraders
 
     public override void TryUpgrade(Character character)
     {
-      if (character.Wallet.TryPayBill(_upgradersConfig.HarvestScaleCostsByLevel(_currentLevel + 1)))
+      if (character.Wallet.TryPayBill(_upgraderConfig.HarvestScaleCostsByLevel(_currentLevel + 1)))
       {
         _currentLevel++;
-        character.Harvester.SetHarvestScale(character.Harvester.HarvestScale + _upgradersConfig.HarvestScaleDeltaByLevel);
+        character.Harvester.SetHarvestScale(character.Harvester.HarvestScale + _upgraderConfig.HarvestScaleDeltaByLevel);
         
+        UpgraderUi.AnimateSuccess();
         UpdateUI();
+      }
+      else
+      {
+        UpgraderUi.AnimateNotEnoughMoney();
       }
     }
     
-    private void UpdateUI() => UpgraderUi.SetValues($"Upgrade Harvest Radius\nLevel {_currentLevel}", NextLevelBill());
-    private Bill NextLevelBill() => _upgradersConfig.HarvestScaleCostsByLevel(_currentLevel + 1);
+    private void UpdateUI()
+    {
+      UpgraderUi.SetValues($"Upgrade Harvest Radius\nLevel {_currentLevel}", NextLevelBill());
+      UpgraderUi.AnimateTextUpdate();
+    }
+    
+    private Bill NextLevelBill() => _upgraderConfig.HarvestScaleCostsByLevel(_currentLevel + 1);
   }
 }

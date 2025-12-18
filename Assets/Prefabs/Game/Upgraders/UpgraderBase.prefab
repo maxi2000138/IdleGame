@@ -135,7 +135,7 @@ RectTransform:
   m_GameObject: {fileID: 2841821880012293910}
   m_LocalRotation: {x: 0.18041588, y: -0, z: -0, w: 0.9835904}
   m_LocalPosition: {x: 0, y: 0, z: 0.688}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5129233504056625936}
@@ -146,7 +146,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.06}
-  m_SizeDelta: {x: 800, y: 1600}
+  m_SizeDelta: {x: 8, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303586110648804322
 MonoBehaviour:
@@ -164,6 +164,20 @@ MonoBehaviour:
   LootViews:
   - {fileID: 6762991785257457111}
   - {fileID: 8374986315632969694}
+  _animationConfig:
+    PunchScale: {x: 0.0001, y: 0.0001, z: 0.0001}
+    PunchDuration: 0.8
+    SuccessScale: {x: 0.0025, y: 0.0025, z: 0.0025}
+    SuccessDuration: 0.6
+    SuccessColor: {r: 0, g: 1, b: 0, a: 1}
+    ShakeDuration: 0.4
+    ShakeStrength: 0.1
+    ErrorColor: {r: 1, g: 0, b: 0, a: 1}
+    TextPunchScale: {x: 0.05, y: 0.05, z: 0.05}
+    TextPunchDuration: 0.15
+    EnterScale: {x: 0.0023, y: 0.0023, z: 0.0023}
+    EnterDuration: 0.3
+    ExitDuration: 0.2
 --- !u!223 &1364838154202758190
 Canvas:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public abstract class UpgraderBase : MonoBehaviour
   {
     if (other.TryGetComponent<Character>(out var character))
     {
+      UpgraderUi.AnimateEnter();
       _cancellationSource = new CancellationTokenSource();
       ProcessUpgrade(character, _cancellationSource.Token).Forget();
     }
@@ -29,7 +30,8 @@ public abstract class UpgraderBase : MonoBehaviour
   
   private void OnTriggerExit(Collider other)
   {
-    _cancellationSource.Cancel();
+    UpgraderUi.AnimateExit();
+    _cancellationSource?.Cancel();
     _cancellationSource = null;
   }
   
@@ -39,7 +41,9 @@ public abstract class UpgraderBase : MonoBehaviour
     { 
       await UniTask.Delay(_upgradeDelayMS);
       
-      if(cancellationToken.IsCancellationRequested) break;
+      if(cancellationToken.IsCancellationRequested) 
+        break;
+        
       TryUpgrade(character);
     }
   }

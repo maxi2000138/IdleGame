@@ -10,24 +10,23 @@ namespace Features.Units.Character.Currency
   {
     private readonly Dictionary<ItemType, int> _amount = new Dictionary<ItemType, int>();
 
-    public event Action OnChange;
+    public event Action<ItemType> OnChange;
     
     public int Amount(ItemType itemType) => _amount.GetValueOrDefault(itemType, 0);
     
     public void Add(ItemType itemType, int amount)
     {
       if (!_amount.TryAdd(itemType, amount))
-      {
         _amount[itemType] += amount;
-        OnChange?.Invoke();
-      }
+      
+      OnChange?.Invoke(itemType);
     }
 
     public bool CanPayBill(Bill bill)
     {
       foreach (var billItem in bill.Items)
       {
-        if (_amount[billItem.Item] < billItem.Amount)
+        if (!_amount.ContainsKey(billItem.Item) || _amount[billItem.Item] < billItem.Amount)
           return false;
       }
 
@@ -38,10 +37,12 @@ namespace Features.Units.Character.Currency
     {
       if (!CanPayBill(bill)) return false;
 
-      foreach (var billItem in bill.Items) 
+      foreach (var billItem in bill.Items)
+      {
         _amount[billItem.Item] -= billItem.Amount;
+        OnChange?.Invoke(billItem.Item);
+      }
 
-      OnChange?.Invoke();
       return true;
     }
   }

@@ -17,6 +17,7 @@ namespace Features.Units.Character.Harvest
     private HarvesterConfig _harvesterConfig;
     private GrassTextureHelper _grassTextureHelper;
     private Character _character;
+    private const int MinTextureSize = 128;
 
     public bool Enabled { get; private set; }
     public float SlowFactor => _harvesterConfig.CharacterSlowFactor;
@@ -28,7 +29,9 @@ namespace Features.Units.Character.Harvest
       _gameFactory = gameFactory;
       _harvesterConfig = harvesterConfig;
       _grassTextureHelper = new GrassTextureHelper();
-      _cutBrush = new Brush(harvesterConfig.HarvestTexture, harvesterConfig.HarvestScale, Color.white);
+      
+      var scaledTexture = ScaleTextureIfNeeded(harvesterConfig.HarvestTexture);
+      _cutBrush = new Brush(scaledTexture, harvesterConfig.HarvestScale, Color.white);
     }
 
     public void Enable(Grass.Grass grass)
@@ -44,7 +47,7 @@ namespace Features.Units.Character.Harvest
     {
       Enabled = false;
       gameObject.SetActive(false);
-    }
+    } 
 
     public void Update()
     {
@@ -100,5 +103,32 @@ namespace Features.Units.Character.Harvest
 
     private Vector3 BrushPosition() =>
       new Vector3(transform.position.x, _currentGrass.GrassCanvas.transform.position.y, transform.position.z);
+
+    private Texture ScaleTextureIfNeeded(Texture originalTexture)
+    {
+      if (originalTexture == null)
+        return originalTexture;
+
+      var width = originalTexture.width;
+      var height = originalTexture.height;
+
+      if (width >= MinTextureSize && height >= MinTextureSize)
+        return originalTexture;
+
+      var targetSize = Mathf.Max(MinTextureSize, Mathf.Max(width, height));
+      
+      var renderTexture = RenderTexture.GetTemporary(targetSize, targetSize, 0, RenderTextureFormat.Default);
+      Graphics.Blit(originalTexture, renderTexture);
+      
+      var scaledTexture = new Texture2D(targetSize, targetSize, TextureFormat.RGBA32, false);
+      RenderTexture.active = renderTexture;
+      scaledTexture.ReadPixels(new Rect(0, 0, targetSize, targetSize), 0, 0);
+      scaledTexture.Apply();
+      
+      RenderTexture.active = null;
+      RenderTexture.ReleaseTemporary(renderTexture);
+
+      return scaledTexture;
+    }
   }
 }

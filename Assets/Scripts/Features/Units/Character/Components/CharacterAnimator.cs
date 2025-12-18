@@ -30,7 +30,7 @@ namespace Features.Units.Character.Components
 
     public void Throw()
     {
-      _animator.Play(Animations.Throw);
+      _animator.CrossFade(Animations.Throw, 0.2f);
     }
   }
 }

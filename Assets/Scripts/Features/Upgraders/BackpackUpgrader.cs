@@ -7,11 +7,11 @@ namespace Features.Upgraders
   public class BackpackUpgrader : UpgraderBase
   {
     private int _currentLevel = 1;
-    private UpgradersConfig _upgradersConfig;
+    private UpgradersConfig _upgraderConfig;
     
     public void Construct(UpgradersConfig upgradersConfig)
     {
-      _upgradersConfig = upgradersConfig;
+      _upgraderConfig = upgradersConfig;
       base.Construct(upgradersConfig.UpgradeDelayMS);
       
       UpdateUI();
@@ -19,16 +19,26 @@ namespace Features.Upgraders
     
     public override void TryUpgrade(Character character)
     {
-      if (character.Wallet.TryPayBill(_upgradersConfig.BackpackCostsByLevel(_currentLevel + 1)))
+      if (character.Wallet.TryPayBill(_upgraderConfig.BackpackCostsByLevel(_currentLevel + 1)))
       { 
         _currentLevel++;
-        character.Inventory.SetMaxCount(character.Inventory.MaxItemsCount + _upgradersConfig.BackpackDeltaByLevel);
+        character.Inventory.SetMaxCount(character.Inventory.MaxItemsCount + _upgraderConfig.BackpackDeltaByLevel);
         
+        UpgraderUi.AnimateSuccess();
         UpdateUI();
+      }
+      else
+      {
+        UpgraderUi.AnimateNotEnoughMoney();
       }
     }
     
-    private void UpdateUI() => UpgraderUi.SetValues($"Upgrade Backpack\nLevel {_currentLevel}", NextLevelBill());
-    private Bill NextLevelBill() => _upgradersConfig.BackpackCostsByLevel(_currentLevel + 1);
+    private void UpdateUI()
+    {
+      UpgraderUi.SetValues($"Upgrade Backpack\nLevel {_currentLevel}", NextLevelBill());
+      UpgraderUi.AnimateTextUpdate();
+    }
+    
+    private Bill NextLevelBill() => _upgraderConfig.BackpackCostsByLevel(_currentLevel + 1);
   }
 }

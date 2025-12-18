@@ -7,17 +7,18 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GreenGrass
-  m_Shader: {fileID: 4800000, guid: 05c9e0a47c1c75d4c82d64b50eba671e, type: 3}
+  m_Name: GreenGrassCut
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _HASNEATH_ON
+  - _USEBAKEDGRASS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -57,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7f969087a2b5cf840bdda1c1d1e3a930, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b6059ccf3fe9594ab6e6c3465fccf8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -82,13 +83,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BendRotationRandom: 0.1
-    - _BladeHeight: 1
-    - _BladeHeightRandom: 0.1
-    - _BladeWidth: 0.12
+    - _BendRotationRandom: 0
+    - _BladeHeight: 0.15
+    - _BladeHeightRandom: 0.2
+    - _BladeWidth: 0.15
     - _BladeWidthRandom: 0.01
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DepthOffset: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
@@ -98,13 +100,14 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RotationMultiplier: 97.5
+    - _RotationMultiplier: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StencilRef: 0
     - _TessellationUniform: 15
     - _UVSec: 0
+    - _UseBakedGrass: 1
     - _WindRange: 0.5
     - _ZWrite: 1
     - _hasNeath: 1
