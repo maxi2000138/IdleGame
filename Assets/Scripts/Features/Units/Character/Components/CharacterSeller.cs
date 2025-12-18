@@ -14,11 +14,11 @@ namespace Features.Units.Character.Components
     private Inventory.Inventory _inventory;
     private Shop.Shop _shop;
     private CharacterAnimator _animator;
-    private Currency.Currency _currency;
+    private Currency.Wallet _wallet;
 
-    public void Construct(Inventory.Inventory inventory, CharacterAnimator animator, Shop.Shop shop, Currency.Currency currency)
+    public void Construct(Inventory.Inventory inventory, CharacterAnimator animator, Shop.Shop shop, Currency.Wallet wallet)
     {
-      _currency = currency;
+      _wallet = wallet;
       _animator = animator;
       _shop = shop;
       _inventory = inventory;
@@ -47,7 +47,7 @@ namespace Features.Units.Character.Components
     }
 
 
-    private void AddCurency(Item item) => _currency.Add(item.Type, 1);
+    private void AddCurency(Item item) => _wallet.Add(item.Type, 1);
 
 
     [Serializable]

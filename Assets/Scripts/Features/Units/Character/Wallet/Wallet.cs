@@ -6,12 +6,14 @@ using UnityEngine;
 
 namespace Features.Units.Character.Currency
 {
-  public class Currency : MonoBehaviour
+  public class Wallet : MonoBehaviour
   {
     private readonly Dictionary<ItemType, int> _amount = new Dictionary<ItemType, int>();
 
     public event Action OnChange;
-
+    
+    public int Amount(ItemType itemType) => _amount.GetValueOrDefault(itemType, 0);
+    
     public void Add(ItemType itemType, int amount)
     {
       if (!_amount.TryAdd(itemType, amount))
@@ -21,27 +23,26 @@ namespace Features.Units.Character.Currency
       }
     }
 
-    public bool Spend(ItemType itemType, int amount)
+    public bool CanPayBill(Bill bill)
     {
-      if (!_amount.TryGetValue(itemType, out var value))
-        return false;
-
-      if (value >= amount)
+      foreach (var billItem in bill.Items)
       {
-        _amount[itemType] -= amount;
-        OnChange?.Invoke();
-        return true;
+        if (_amount[billItem.Item] < billItem.Amount)
+          return false;
       }
 
-      return false;
+      return true;
     }
 
-    public int Amount(ItemType itemType)
+    public bool TryPayBill(Bill bill)
     {
-      if (!_amount.TryGetValue(itemType, out var value))
-        return 0;
+      if (!CanPayBill(bill)) return false;
 
-      return value;
+      foreach (var billItem in bill.Items) 
+        _amount[billItem.Item] -= billItem.Amount;
+
+      OnChange?.Invoke();
+      return true;
     }
   }
 }

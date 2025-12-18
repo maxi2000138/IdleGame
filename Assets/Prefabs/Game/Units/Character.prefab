@@ -154,7 +154,7 @@ MonoBehaviour:
   <Detector>k__BackingField: {fileID: 2783303452208388074}
   <Harvester>k__BackingField: {fileID: 2000316168735395519}
   <Inventory>k__BackingField: {fileID: 4043032423695385301}
-  <Currency>k__BackingField: {fileID: 7942749831707466655}
+  <Wallet>k__BackingField: {fileID: 7942749831707466655}
   <Animator>k__BackingField: {fileID: 5849162115270754902}
   <Seller>k__BackingField: {fileID: 2855512626041554555}
 --- !u!114 &3677162705607241631

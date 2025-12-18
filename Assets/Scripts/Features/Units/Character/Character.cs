@@ -14,7 +14,7 @@ namespace Features.Units.Character
     [field: SerializeField] public CharacterDetector Detector { get; private set; }
     [field: SerializeField] public Harvester Harvester { get; private set; }
     [field: SerializeField] public Inventory.Inventory Inventory { get; private set; }
-    [field: SerializeField] public Currency.Currency Currency { get; private set; }
+    [field: SerializeField] public Currency.Wallet Wallet { get; private set; }
     [field: SerializeField] public CharacterAnimator Animator { get; private set; }
     [field: SerializeField] public CharacterSeller Seller { get; private set; }
 

@@ -20,6 +20,7 @@ namespace Features.Units.Character.Harvest
 
     public bool Enabled { get; private set; }
     public float SlowFactor => _harvesterConfig.CharacterSlowFactor;
+    public float HarvestScale => _cutBrush.Scale;
 
     public void Construct(Character character, HarvesterConfig harvesterConfig, IGameFactory gameFactory)
     {
@@ -53,6 +54,11 @@ namespace Features.Units.Character.Harvest
 
       var (cutPixels, totalPixels) = _grassTextureHelper.ProcessCut();
       HandleCut(cutPixels, totalPixels);
+    }
+
+    public void SetHarvestScale(float scale)
+    {
+      _cutBrush.Scale = scale;
     }
 
     private void HandleCut(float cutPixels, float totalPixels)

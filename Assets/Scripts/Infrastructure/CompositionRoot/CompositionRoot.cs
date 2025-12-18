@@ -1,6 +1,7 @@
 using System;
 using Features.Shop;
 using Features.Units.Character;
+using Features.Upgraders;
 using Infrastructure.Camera;
 using Infrastructure.Factory;
 using Infrastructure.Input;
@@ -16,6 +17,8 @@ namespace Infrastructure.CompositionRoot
     [SerializeField] private CameraService _camera;
     [SerializeField] private Configs _configs;
     [SerializeField] private Shop _shop;
+    [SerializeField] private BackpackUpgrader _backpackUpgrader;
+    [SerializeField] private HarvestRadiusUpgrader _harvestRadiusUpgrader;
     [SerializeField] private Transform _characterSpawnPosition;
 
     private void Start()
@@ -26,15 +29,12 @@ namespace Infrastructure.CompositionRoot
       var character = gameFactory.CreateCharacter(_characterSpawnPosition.position);
       _shop.SpawnCustomers();
 
-      _uiMediator.Construct(character.Currency, character.Inventory);
+      _uiMediator.Construct(character.Wallet, character.Inventory);
+      _harvestRadiusUpgrader.Construct(_configs.UpgradersConfig);
+      _backpackUpgrader.Construct(_configs.UpgradersConfig);
 
       _joystick.Init();
       _joystick.Enable(true);
-    }
-
-    private void OnDestroy()
-    {
-      _joystick.Enable(false);
     }
   }
 }

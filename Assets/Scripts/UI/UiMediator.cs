@@ -10,24 +10,24 @@ namespace UI
     public List<LootView> LootViews;
     public BackpackView BackpackView;
 
-    private Currency _currency;
+    private Wallet _wallet;
     private Inventory _inventory;
 
-    public void Construct(Currency currency, Inventory inventory)
+    public void Construct(Wallet wallet, Inventory inventory)
     {
       _inventory = inventory;
-      _currency = currency;
+      _wallet = wallet;
 
       UpdateBackpack();
-      UpdateCurrency();
+      UpdateWallet();
 
-      _currency.OnChange += UpdateCurrency;
+      _wallet.OnChange += UpdateWallet;
       _inventory.OnChange += UpdateBackpack;
     }
 
     private void OnDestroy()
     {
-      if (_currency != null) _currency.OnChange -= UpdateCurrency;
+      if (_wallet != null) _wallet.OnChange -= UpdateWallet;
       if (_inventory != null) _inventory.OnChange -= UpdateBackpack;
     }
 
@@ -36,11 +36,11 @@ namespace UI
       BackpackView.SetValues(_inventory.ItemsAmount, _inventory.MaxItemsCount);
     }
 
-    private void UpdateCurrency()
+    private void UpdateWallet()
     {
       foreach (var lootView in LootViews)
       {
-        lootView.SetText(_currency.Amount(lootView.ItemType).ToString());
+        lootView.SetText(_wallet.Amount(lootView.ItemType).ToString());
       }
     }
 

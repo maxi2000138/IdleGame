@@ -36,7 +36,7 @@ namespace Infrastructure.Factory
       character.Harvester.Construct(character, _configs.HarvesterConfig, this);
       character.Detector.Construct(character, _configs.CharacterConfig);
       character.Inventory.Construct(_configs.InventoryConfig.StartMaxCount, _configs.InventoryConfig.ItemHeight);
-      character.Seller.Construct(character.Inventory, character.Animator, _shop, character.Currency);
+      character.Seller.Construct(character.Inventory, character.Animator, _shop, character.Wallet);
 
       character.Mover.ResetSpeed();
       _camera.SetTarget(character.transform);

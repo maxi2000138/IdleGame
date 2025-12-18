@@ -2,6 +2,7 @@ using Features.Units.Character._Config;
 using Features.Units.Character.Harvest._Config;
 using Features.Units.Character.Inventory._Config;
 using Features.Units.Customer._Configs;
+using Features.Upgraders.Configs;
 using UnityEngine;
 
 namespace Infrastructure
@@ -12,5 +13,6 @@ namespace Infrastructure
     [Space(20)] public CustomerConfig CustomerConfig;
     [Space(20)] public HarvesterConfig HarvesterConfig;
     [Space(20)] public InventoryConfig InventoryConfig;
+    [Space(20)] public UpgradersConfig UpgradersConfig;
   }
 }
