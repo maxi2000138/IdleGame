@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 6459177415610736878}
   - component: {fileID: 4550671381020794412}
   - component: {fileID: 8537757699101214741}
-  - component: {fileID: 5161335243562280085}
   - component: {fileID: 8589796695532765409}
   - component: {fileID: 7912487894394185757}
   m_Layer: 6
@@ -208,21 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GrassItem>k__BackingField: {fileID: 0}
   <GrassCanvas>k__BackingField: {fileID: 8589796695532765409}
---- !u!114 &5161335243562280085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5930166164619351538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52652eb2bf572e740b1b8696286cb1d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _regenerationDelay: 3
-  _checkInterval: 1
-  _cutThreshold: 0.795
+  AnimationConfig:
+    CutColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &8589796695532765409
 MonoBehaviour:
   m_ObjectHideFlags: 0
