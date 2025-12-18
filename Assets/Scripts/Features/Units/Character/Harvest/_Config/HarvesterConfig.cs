@@ -9,5 +9,6 @@ namespace Features.Units.Character.Scythe._Config
     [Range(0f,1f)] public float CharacterSlowFactor;
     public Texture HarvestTexture;
     [Range(0f,1f)] public float HarvestScale;
+    [Range(0.01f,0.5f)] public float SpawnItemCutPercentage;
   }
 }

@@ -1,4 +1,6 @@
-﻿using Features.Units.Character;
+﻿using Features.Farming;
+using Features.Units.Character;
+using Features.Units.Character.Inventory;
 using Features.Units.Customer;
 using UnityEngine;
 
@@ -8,5 +10,6 @@ namespace Services
   {
     Character CreateCharacter(Vector3 position);
     Customer CreateCustomer(Vector3 position, Transform parent);
+    Item SpawnItem(GrassItem item, Vector3 worldPos);
   }
 }

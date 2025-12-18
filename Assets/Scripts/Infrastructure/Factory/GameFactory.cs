@@ -1,6 +1,7 @@
 using Features.Farm;
 using Features.Farming;
 using Features.Units.Character;
+using Features.Units.Character.Inventory;
 using Features.Units.Customer;
 using Infrastructure.Camera;
 using Infrastructure.CompositionRoot;
@@ -32,8 +33,9 @@ namespace Services
       Character character = Object.Instantiate(prefab, position, Quaternion.identity);
       
       character.Mover.Construct(character, _joystick, _camera, _configs.CharacterConfig);
-      character.Harvester.Construct(_configs.harvesterConfig);
+      character.Harvester.Construct(character, _configs.HarvesterConfig, this);
       character.Detector.Construct(character, _configs.CharacterConfig);
+      character.Inventory.Construct(_configs.InventoryConfig.StartMaxCount, _configs.InventoryConfig.ItemHeight);
       
       character.Mover.ResetSpeed();
       _camera.SetTarget(character.transform);
@@ -48,6 +50,10 @@ namespace Services
       customer.transform.SetParent(parent);
 
       return customer;
+    }
+    public Item SpawnItem(GrassItem item, Vector3 worldPos)
+    {
+      return Object.Instantiate(item, worldPos, Quaternion.identity);
     }
   }
 }

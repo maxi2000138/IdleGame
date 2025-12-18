@@ -10,6 +10,7 @@ namespace Features.Units.Character
     [field: SerializeField] public CharacterDetector Detector { get; private set; }
     [field: SerializeField] public Harvester Harvester { get; private set; }
     [field: SerializeField] public CharacterAnimator Animator { get; private set; }
+    [field: SerializeField] public Inventory.Inventory Inventory { get; private set; }
 
     
     private void Update()
