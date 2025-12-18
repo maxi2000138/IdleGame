@@ -1,15 +1,15 @@
-using Features.Farm;
-using Features.Farming;
+using Features.Grass;
+using Features.Shop;
 using Features.Units.Character;
-using Features.Units.Character.Inventory;
+using Features.Units.Character.Inventory.Item;
 using Features.Units.Customer;
 using Infrastructure.Camera;
-using Infrastructure.CompositionRoot;
-using Input;
+using Infrastructure.Input;
 using UnityEngine;
+using Utils;
 using Object = UnityEngine.Object;
 
-namespace Services
+namespace Infrastructure.Factory
 {
 
   public class GameFactory : IGameFactory
@@ -17,26 +17,27 @@ namespace Services
     private readonly Configs _configs;
     private readonly IJoystickService _joystick;
     private readonly ICameraService _camera;
-    private Grass _grass;
-    
-    public GameFactory(Configs configs, IJoystickService joystick, ICameraService camera, Grass grass)
+    private readonly Shop _shop;
+
+    public GameFactory(Configs configs, IJoystickService joystick, ICameraService camera, Shop shop)
     {
       _configs = configs;
       _joystick = joystick;
       _camera = camera;
-      _grass = grass;
+      _shop = shop;
     }
 
     public Character CreateCharacter(Vector3 position)
     {
       var prefab = _configs.CharacterConfig.Prefab;
-      Character character = Object.Instantiate(prefab, position, Quaternion.identity);
-      
+      var character = Object.Instantiate(prefab, position, Quaternion.identity);
+
       character.Mover.Construct(character, _joystick, _camera, _configs.CharacterConfig);
       character.Harvester.Construct(character, _configs.HarvesterConfig, this);
       character.Detector.Construct(character, _configs.CharacterConfig);
       character.Inventory.Construct(_configs.InventoryConfig.StartMaxCount, _configs.InventoryConfig.ItemHeight);
-      
+      character.Seller.Construct(character.Inventory, character.Animator, _shop, character.Currency);
+
       character.Mover.ResetSpeed();
       _camera.SetTarget(character.transform);
 
@@ -47,13 +48,13 @@ namespace Services
     {
       var prefab = _configs.CustomerConfig.Prefab;
       var customer = Object.Instantiate(prefab, position, Quaternion.identity);
+      customer.CustomerMover.Construct(_shop.CustomerQueue);
+      customer.transform.eulerAngles = CustomerConstants.ForwardRotation;
       customer.transform.SetParent(parent);
 
       return customer;
     }
-    public Item SpawnItem(GrassItem item, Vector3 worldPos)
-    {
-      return Object.Instantiate(item, worldPos, Quaternion.identity);
-    }
+
+    public Item SpawnItem(GrassItem item, Vector3 worldPos) => Object.Instantiate(item, worldPos, Quaternion.identity);
   }
 }

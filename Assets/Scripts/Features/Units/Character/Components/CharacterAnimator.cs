@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using Utils;
 
-namespace Features.Units.Character
+namespace Features.Units.Character.Components
 {
   public class CharacterAnimator : MonoBehaviour
   {
@@ -13,12 +12,12 @@ namespace Features.Units.Character
     {
       _animator.SetFloat(Animations.Velocity, speed);
     }
-    
+
     public void Idle()
     {
       _animator.SetFloat(Animations.Velocity, 0f);
     }
-    
+
     public void Harvest()
     {
       _animator.SetBool(Animations.Harvesting, true);
@@ -27,6 +26,11 @@ namespace Features.Units.Character
     public void StopHarvest()
     {
       _animator.SetBool(Animations.Harvesting, false);
+    }
+
+    public void Throw()
+    {
+      _animator.Play(Animations.Throw);
     }
   }
 }

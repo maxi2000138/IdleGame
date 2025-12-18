@@ -1,10 +1,10 @@
-﻿using Features.Farming;
+﻿using Features.Grass;
 using Features.Units.Character;
-using Features.Units.Character.Inventory;
+using Features.Units.Character.Inventory.Item;
 using Features.Units.Customer;
 using UnityEngine;
 
-namespace Services
+namespace Infrastructure.Factory
 {
   public interface IGameFactory
   {

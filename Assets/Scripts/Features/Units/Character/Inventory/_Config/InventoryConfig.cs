@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Features.Units.Character.Inventory._Config
 {

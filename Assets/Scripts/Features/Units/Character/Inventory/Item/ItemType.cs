@@ -1,4 +1,4 @@
-﻿namespace Features.Units.Character.Inventory
+﻿namespace Features.Units.Character.Inventory.Item
 {
   public enum ItemType
   {

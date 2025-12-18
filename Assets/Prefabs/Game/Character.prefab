@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7893863614898888317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6180738218221055244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6543215095787770354}
+  m_Layer: 0
+  m_Name: SellPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6543215095787770354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180738218221055244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6, y: 0.698, z: 0.025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7893863614898888317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7956253951068189412
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +109,9 @@ GameObject:
   - component: {fileID: 3006241648856680040}
   - component: {fileID: 2783303452208388074}
   - component: {fileID: 5849162115270754902}
+  - component: {fileID: 2855512626041554555}
   - component: {fileID: 4043032423695385301}
+  - component: {fileID: 7942749831707466655}
   - component: {fileID: 9011409693283469736}
   - component: {fileID: 7293257892672018097}
   m_Layer: 0
@@ -120,8 +153,10 @@ MonoBehaviour:
   <Mover>k__BackingField: {fileID: 3006241648856680040}
   <Detector>k__BackingField: {fileID: 2783303452208388074}
   <Harvester>k__BackingField: {fileID: 2000316168735395519}
-  <Animator>k__BackingField: {fileID: 5849162115270754902}
   <Inventory>k__BackingField: {fileID: 4043032423695385301}
+  <Currency>k__BackingField: {fileID: 7942749831707466655}
+  <Animator>k__BackingField: {fileID: 5849162115270754902}
+  <Seller>k__BackingField: {fileID: 2855512626041554555}
 --- !u!114 &3677162705607241631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +207,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 7293257892672018097}
+--- !u!114 &2855512626041554555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133fa27bfe7c4272b99458c9a16d888e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sellPoint: {fileID: 6543215095787770354}
+  _animationsConfig:
+    JumpForce: 0.8
+    JumpDuration: 0.5
+    BackToArmsDuration: 0.5
+    DissapearDuration: 0.5
 --- !u!114 &4043032423695385301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +242,18 @@ MonoBehaviour:
     JumpHeight: 1
     JumpCount: 1
     JumpDuration: 0.5
+--- !u!114 &7942749831707466655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144052271802330306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5648cf426c954a4cad4c88ac5803b36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &9011409693283469736
 CharacterController:
   m_ObjectHideFlags: 0
@@ -990,6 +1055,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3742407835892290726, guid: 3e6d1a49c91471741a54b213a6fbaf30, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5308782191116171826}
+    - targetCorrespondingSourceObject: {fileID: 3742407835892290726, guid: 3e6d1a49c91471741a54b213a6fbaf30, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6543215095787770354}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e6d1a49c91471741a54b213a6fbaf30, type: 3}
 --- !u!4 &6478901155143298352 stripped

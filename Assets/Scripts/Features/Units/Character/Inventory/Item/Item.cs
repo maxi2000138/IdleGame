@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Features.Units.Character.Inventory
+namespace Features.Units.Character.Inventory.Item
 {
   public class Item : MonoBehaviour
   {

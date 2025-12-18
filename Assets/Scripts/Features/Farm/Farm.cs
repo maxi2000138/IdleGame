@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Es.InkPainter;
+﻿using Es.InkPainter;
+using UnityEngine;
 
-namespace Features.Farming
+namespace Features.Farm
 {
   public class Farm : MonoBehaviour
   {

@@ -16,7 +16,7 @@ namespace Features.Grass
       var renderTexture = GetRenderTexture();
       _lastTexture = ReadTextureFromRenderTexture(renderTexture);
     }
-    
+
     public (float, float) ProcessCut()
     {
       var renderTexture = GetRenderTexture();
@@ -49,7 +49,7 @@ namespace Features.Grass
 
       return texture2D;
     }
-    
+
     private RenderTexture GetRenderTexture()
     {
       var paintSet = _inkCanvas.PaintDatas?.FirstOrDefault();

@@ -1,15 +1,14 @@
 ﻿using System;
-using UnityEngine;
 using Es.InkPainter;
-using Utils;
+using UnityEngine;
 
-namespace Features.Farming
+namespace Features.Grass
 {
   public class Grass : MonoBehaviour
   {
     [field: SerializeField] public GrassItem GrassItem { get; private set; }
     [field: SerializeField] public InkCanvas GrassCanvas { get; private set; }
-    
+
     public AnimationsConfig AnimationConfig;
 
     [Serializable]

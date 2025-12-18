@@ -1,9 +1,9 @@
 ﻿using Features.Units.Character._Config;
 using Infrastructure.Camera;
-using Input;
+using Infrastructure.Input;
 using UnityEngine;
 
-namespace Features.Units.Character
+namespace Features.Units.Character.Components
 {
   public class CharacterMover : MonoBehaviour
   {
@@ -15,10 +15,14 @@ namespace Features.Units.Character
     private const float RayDistance = 5f;
     private const float LerpRotate = 0.25f;
 
-    private float JoystickAngle => Mathf.Atan2(_joystickService.GetAxis().x, 
-      _joystickService.GetAxis().y) * Mathf.Rad2Deg + _cameraService.Camera.transform.eulerAngles.y;
+    private float JoystickAngle => Mathf.Atan2(_joystickService.GetAxis().x,
+                                     _joystickService.GetAxis().y) *
+                                   Mathf.Rad2Deg +
+                                   _cameraService.Camera.transform.eulerAngles.y;
 
-    public void Construct(Character character, IJoystickService joystickService, 
+    public bool IsIdle => _joystickService.GetAxis() == Vector2.zero;
+
+    public void Construct(Character character, IJoystickService joystickService,
       ICameraService cameraService, CharacterConfig characterConfig)
     {
       _cameraService = cameraService;
@@ -26,7 +30,7 @@ namespace Features.Units.Character
       _joystickService = joystickService;
       _characterConfig = characterConfig;
     }
-    
+
     public void MoveAndRotate()
     {
       if (_joystickService.GetAxis() != Vector2.zero)
@@ -42,17 +46,21 @@ namespace Features.Units.Character
 
     private void Move()
     {
-      Vector3 move = Quaternion.Euler(0f, JoystickAngle, 0f) * Vector3.forward;
-    
-      Vector3 next = _character.transform.position + move * (_character.CharacterController.Speed * Time.deltaTime);
-                        
-      Ray ray = new Ray { origin = next, direction = Vector3.down };
+      var move = Quaternion.Euler(0f, JoystickAngle, 0f) * Vector3.forward;
+
+      var next = _character.transform.position + move * (_character.CharacterController.Speed * Time.deltaTime);
+
+      var ray = new Ray
+      {
+        origin = next,
+        direction = Vector3.down,
+      };
       if (!Physics.Raycast(ray, RayDistance)) return;
-      
+
       _character.CharacterController.Controller.Move(move * (_character.CharacterController.Speed * Time.deltaTime));
       _character.Animator.Move(1f);
     }
-    
+
     private void Idle()
     {
       _character.Animator.Idle();
@@ -61,14 +69,14 @@ namespace Features.Units.Character
 
     private void Rotate()
     {
-      float lerpAngle = Mathf.LerpAngle(_character.CharacterController.Angle, JoystickAngle, LerpRotate);
+      var lerpAngle = Mathf.LerpAngle(_character.CharacterController.Angle, JoystickAngle, LerpRotate);
       _character.CharacterController.transform.rotation = Quaternion.Euler(0f, lerpAngle, 0f);
     }
-    
+
     public void SetSlowFactor(float factor) =>
       _character.CharacterController.SetSpeed(_characterConfig.Speed * factor);
-    
-    public void ResetSpeed() => 
+
+    public void ResetSpeed() =>
       _character.CharacterController.SetSpeed(_characterConfig.Speed);
   }
 }

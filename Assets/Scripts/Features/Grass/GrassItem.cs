@@ -1,9 +1,9 @@
-﻿using Features.Units.Character.Inventory;
+﻿using Features.Units.Character.Inventory.Item;
 
-namespace Features.Farming
+namespace Features.Grass
 {
   public class GrassItem : Item
   {
-    
+
   }
 }
