@@ -17,8 +17,8 @@ namespace Features.Upgraders.Configs
       {
         Items = new List<Bill.BillItem>()
         {
-          new Bill.BillItem { Item = ItemType.GreenGrass, Amount = level * 2 },
-          new Bill.BillItem { Item = ItemType.YellowGrass, Amount = Mathf.RoundToInt(level * 1.5f) },
+          new Bill.BillItem { Item = ItemType.GreenGrass, Amount =  Mathf.RoundToInt(level * 0.3f) },
+          new Bill.BillItem { Item = ItemType.YellowGrass, Amount = Mathf.RoundToInt(level * 0.5f) },
         }
       };
 
@@ -28,8 +28,8 @@ namespace Features.Upgraders.Configs
       {
         Items = new List<Bill.BillItem>()
         {
-          new Bill.BillItem { Item = ItemType.GreenGrass, Amount = level },
-          new Bill.BillItem { Item = ItemType.YellowGrass, Amount = level * 3 },
+          new Bill.BillItem { Item = ItemType.GreenGrass, Amount =  Mathf.RoundToInt(level * 0.8f) },
+          new Bill.BillItem { Item = ItemType.YellowGrass, Amount = level },
         }
       };
   }

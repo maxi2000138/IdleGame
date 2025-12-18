@@ -35,7 +35,7 @@ namespace Features.Upgraders
     
     private void UpdateUI()
     {
-      UpgraderUi.SetValues($"Upgrade Backpack\nLevel {_currentLevel}", NextLevelBill());
+      UpgraderUi.SetValues($"Backpack\nLevel {_currentLevel}", NextLevelBill());
       UpgraderUi.AnimateTextUpdate();
     }
     

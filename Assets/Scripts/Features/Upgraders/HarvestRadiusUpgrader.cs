@@ -35,7 +35,7 @@ namespace Features.Upgraders
     
     private void UpdateUI()
     {
-      UpgraderUi.SetValues($"Upgrade Harvest Radius\nLevel {_currentLevel}", NextLevelBill());
+      UpgraderUi.SetValues($"Harvest Radius\nLevel {_currentLevel}", NextLevelBill());
       UpgraderUi.AnimateTextUpdate();
     }
     
